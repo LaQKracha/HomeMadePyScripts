@@ -10,11 +10,15 @@ Python is like the Swiss Army knife of hacking tools. It's powerful, versatile, 
 
 ## What's Inside?
 
-### Script 1: netScanner
+### Script 1: macChanger
+
+This script is aimed to help to just change your MAC address.
+
+### Script 2: netScanner
 
 This script is aimed to help to discover hosts in the same network.
 
-### Script 2: ARPspoofer
+### Script 3: ARPspoofer
 
 A script to conduct ARP spoofing attacks
 
