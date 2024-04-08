@@ -7,11 +7,11 @@ def outPutHeader(clients):
     for client in clients:
         print(f"{client['ip']}\t{client['mac']}\t{client.get('os', 'Unknown')}")
 
-def scan(target):
+def scan(target, iface):
     arp_req = s.ARP(pdst=target)
     broadcast = s.Ether(dst="ff:ff:ff:ff:ff:ff")
     arp_req_br = broadcast/arp_req
-    answered = s.srp(arp_req_br, timeout=1, verbose=False)[0]
+    answered = s.srp(arp_req_br, iface=iface, timeout=1, verbose=False)[0]
     clients = []
     for e in answered:
         c_dict = {"ip": e[1].psrc, "mac": e[1].hwsrc}
@@ -35,15 +35,16 @@ def detect_os(ttl):
 def get_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument("-t", "--target", dest="target", help="The target IP/mask")
+    parser.add_argument("-i", "--iface", dest="iface", help="The network interface to use")
     args = parser.parse_args()
     if not args.target:
         parser.error("[-] Please specify an IP address using -t or --target.")
-    return args.target
+    return args.target, args.iface
 
 if __name__ == '__main__':
     try:
-        target = get_arguments()
-        clients = scan(f"{target}")
+        target, iface = get_arguments()
+        clients = scan(target, iface)
         outPutHeader(clients)
     except Exception as e:
         print("Error:", e)
