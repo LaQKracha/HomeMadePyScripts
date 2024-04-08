@@ -27,7 +27,7 @@ A script to conduct ARP spoofing attacks
 Using these scripts is as easy as pie. Just clone the repository, navigate to the script you want to use, and run it with Python. Make sure you have the necessary permissions before attempting any hacks – we don't want any run-ins with the cyber police!
 
 ```bash
-git clone 
+git clone https://github.com/laqkracha/HomeMadePyScripts.git
 cd HomeMadePyScripts
 python <script.py>
 ```
