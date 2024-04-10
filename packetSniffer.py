@@ -1,5 +1,6 @@
 import scapy.all as s
 from scapy.layers import http
+import sys
 
 def sniff(interface):
 	s.sniff(iface=interface, store=False, prn=proc_sniff)
@@ -21,5 +22,9 @@ def proc_sniff(packet):
 			print(f"\n\n[+] This may be interesting=====>{load}\n\n")
 #					break # break out of the current loop
 		
-
-sniff("en0")
+if __name__ == '__main__':
+	try:
+		intr = sys.argv[1]
+		sniff(intr)
+	except IndexError:
+		print(f"[-] Usage: {sys.argv[0]} <int>")
